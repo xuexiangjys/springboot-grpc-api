@@ -1,0 +1,63 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.13.RELEASE'
+    id 'com.google.protobuf' version '0.8.5'
+    id 'java'
+}
+
+group = 'com.xuexiang'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.protobuf'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+def grpcVersion = '1.19.0'
+def protobufVersion = '3.6.1'
+def protocVersion = protobufVersion
+//自动生成proto文件
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+dependencies {
+    //grpc
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    compileOnly "javax.annotation:javax.annotation-api:1.2"
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation 'io.github.lognet:grpc-spring-boot-starter:3.2.2'
+
+    //spring boot
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
