@@ -1,4 +1,4 @@
-package com.xuexiang.springbootgrpcdemo;
+package com.xuexiang.springbootgrpcapi;
 
 import io.grpc.Metadata;
 import io.grpc.ServerCall;

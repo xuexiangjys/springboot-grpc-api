@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuexiang.springbootgrpcapi.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.xuexiang.springbootgrpcapi.model.OrderInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+</mapper>

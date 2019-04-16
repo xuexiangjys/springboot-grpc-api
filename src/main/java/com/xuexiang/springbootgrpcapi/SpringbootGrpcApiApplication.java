@@ -1,11 +1,11 @@
-package com.xuexiang.springbootgrpcdemo;
+package com.xuexiang.springbootgrpcapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SpringbootGrpcDemoApplication {
+public class SpringbootGrpcApiApplication {
 
     @Bean
     public GreeterService greeterService() {
@@ -13,7 +13,7 @@ public class SpringbootGrpcDemoApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootGrpcDemoApplication.class, args);
+        SpringApplication.run(SpringbootGrpcApiApplication.class, args);
     }
 
 }

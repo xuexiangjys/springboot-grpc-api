@@ -1,7 +1,7 @@
-package com.xuexiang.springbootgrpcdemo;
-import com.xuexiang.springbootgrpcdemo.helloworld.GreeterGrpc;
-import com.xuexiang.springbootgrpcdemo.helloworld.HelloReply;
-import com.xuexiang.springbootgrpcdemo.helloworld.HelloRequest;
+package com.xuexiang.springbootgrpcapi;
+import com.xuexiang.springbootgrpcapi.helloworld.GreeterGrpc;
+import com.xuexiang.springbootgrpcapi.helloworld.HelloReply;
+import com.xuexiang.springbootgrpcapi.helloworld.HelloRequest;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;

@@ -1,4 +1,4 @@
-package com.xuexiang.springbootgrpcdemo;
+package com.xuexiang.springbootgrpcapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringbootGrpcDemoApplicationTests {
+public class SpringbootGrpcApiApplicationTests {
 
     @Test
     public void contextLoads() {
