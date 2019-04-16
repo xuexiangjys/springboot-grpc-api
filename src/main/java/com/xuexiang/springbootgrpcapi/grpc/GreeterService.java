@@ -1,4 +1,5 @@
-package com.xuexiang.springbootgrpcapi;
+package com.xuexiang.springbootgrpcapi.grpc;
+import com.xuexiang.springbootgrpcapi.LogInterceptor;
 import com.xuexiang.springbootgrpcapi.helloworld.GreeterGrpc;
 import com.xuexiang.springbootgrpcapi.helloworld.HelloReply;
 import com.xuexiang.springbootgrpcapi.helloworld.HelloRequest;
