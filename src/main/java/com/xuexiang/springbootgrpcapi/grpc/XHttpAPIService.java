@@ -30,7 +30,7 @@ public class XHttpAPIService extends APIServiceGrpc.APIServiceImplBase {
     @Override
     public void login(XHttpApi.LoginRequest request, StreamObserver<XHttpApi.LoginReply> responseObserver){
         if (userService.findUserByAccount(request.getLoginName()) == null) {
-            responseObserver.onError(new ApiException("账号不存在！", COMMON_BUSINESS_ERROR));
+            responseObserver.onError(ApiException.error("账号不存在！", COMMON_BUSINESS_ERROR));
         }
 
         User user = userService.login(request.getLoginName(), request.getPassword());
@@ -43,7 +43,7 @@ public class XHttpAPIService extends APIServiceGrpc.APIServiceImplBase {
             responseObserver.onNext(loginReply);
             responseObserver.onCompleted();
         } else {
-            responseObserver.onError(new ApiException("用户名或密码错误！", COMMON_BUSINESS_ERROR));
+            responseObserver.onError(ApiException.error("用户名或密码错误！", COMMON_BUSINESS_ERROR));
         }
     }
 

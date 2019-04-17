@@ -1,5 +1,8 @@
 package com.xuexiang.springbootgrpcapi.exception;
 
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
+
 /**
  * @author xuexiang
  * @since 2018/8/6 下午3:11
@@ -23,6 +26,18 @@ public class ApiException extends Exception {
 
     public int getCode() {
         return mCode;
+    }
+
+    /**
+     * 获取GRPC错误
+     * @param message
+     * @param code
+     * @return
+     */
+    public static StatusRuntimeException error(String message, int code) {
+        return Status.UNKNOWN.withDescription(message)
+                .withCause(new ApiException(message, code))
+                .asRuntimeException();
     }
 
     /**
