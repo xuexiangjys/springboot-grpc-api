@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import static com.xuexiang.springbootgrpcapi.exception.ApiException.ERROR.COMMON_BUSINESS_ERROR;
 
 /**
@@ -47,6 +49,18 @@ public class XHttpAPIService extends APIServiceGrpc.APIServiceImplBase {
         }
     }
 
+    @Override
+    public void getAllUser(XHttpApi.Empty request, StreamObserver<XHttpApi.UserList> responseObserver) {
+        List<User> users = userService.findAllUser();
+        XHttpApi.UserList.Builder builder = XHttpApi.UserList.newBuilder();
+        for (User user: users) {
+            builder.addUsers(toApi(user));
+        }
+        responseObserver.onNext(builder.build());
+        responseObserver.onCompleted();
+    }
+
+
     private XHttpApi.User toApi(User user) {
         return XHttpApi.User.newBuilder()
                 .setUserId(user.getUserId())
@@ -58,4 +72,6 @@ public class XHttpAPIService extends APIServiceGrpc.APIServiceImplBase {
                 .setPhone(user.getPhone())
                 .build();
     }
+
+
 }
