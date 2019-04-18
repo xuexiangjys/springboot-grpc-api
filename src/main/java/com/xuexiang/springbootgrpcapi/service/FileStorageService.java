@@ -11,18 +11,21 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FileStorageService {
 
-
     /**
      * 存储文件
      *
-     * @param file
-     * @return 存储文件的文件名
+     * @param fileName 文件名
+     * @param fileSize 文件大小
+     * @param data 数据
+     * @return
+     * @throws Exception
      */
-    String storeFile(MultipartFile file) throws Exception;
+    String storeFile(String fileName, long fileSize, byte[] data) throws Exception;
 
 
     /**
      * 读取文件
+     *
      * @param fileName
      * @return
      */

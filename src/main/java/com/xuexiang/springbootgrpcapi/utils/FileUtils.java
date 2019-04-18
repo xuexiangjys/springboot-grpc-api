@@ -3,6 +3,7 @@ package com.xuexiang.springbootgrpcapi.utils;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author xuexiang
@@ -37,5 +38,35 @@ public final class FileUtils {
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastPoi == -1 || lastSep >= lastPoi) return "";
         return filePath.substring(lastPoi + 1);
+    }
+
+    /**
+     * 判断文件是否存在，不存在则判断是否创建成功
+     *
+     * @param file 文件
+     * @return {@code true}: 存在或创建成功<br>{@code false}: 不存在或创建失败
+     */
+    public static boolean createOrExistsFile(final File file) {
+        if (file == null) return false;
+        // 如果存在，是文件则返回 true，是目录则返回 false
+        if (file.exists()) return file.isFile();
+        if (!createOrExistsDir(file.getParentFile())) return false;
+        try {
+            return file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 判断目录是否存在，不存在则判断是否创建成功
+     *
+     * @param file 文件
+     * @return {@code true}: 存在或创建成功<br>{@code false}: 不存在或创建失败
+     */
+    public static boolean createOrExistsDir(final File file) {
+        // 如果存在，是目录则返回 true，是文件则返回 false，不存在则返回是否创建成功
+        return file != null && (file.exists() ? file.isDirectory() : file.mkdirs());
     }
 }
