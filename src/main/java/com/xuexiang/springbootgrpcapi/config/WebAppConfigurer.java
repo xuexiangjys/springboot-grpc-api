@@ -35,7 +35,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
                 .addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
-                .allowedHeaders("Origin, X-Requested-With, Content-Type, Accept")
+                .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept")
                 .allowedMethods("GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS")
                 .maxAge(3600);
         super.addCorsMappings(registry);
